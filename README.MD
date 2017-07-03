@@ -10,4 +10,4 @@ A Simple image search engine using Getty Image API.
 
 The app runs on ```localhost:8080```
 
-*You need Java >8 and Maven*
+*You need Java 7 or higher and Maven*
