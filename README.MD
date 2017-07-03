@@ -1,6 +1,6 @@
 ### Get-Image
 
-A Simple image search engine using Getty Image API.
+A Simple image search engine using Getty Image API using **Springboot** and **AngularJS 1**.
 
 
 - Clone the repo and cd into it.
