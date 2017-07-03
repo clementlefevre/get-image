@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gettyApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="CLE">
+
+    <title>Getty Image Search</title>
+
+
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+          rel="stylesheet">
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]>
+    <script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body ng-app="gettyApp" ng-controller="searchAgentsController">
+<h3>Get-Image</h3>
+<div class="jumbotron">
+
+    <form class="form-horizontal" role="form" ng-submit="searchImages()" name="form">
+
+        <div class="form-group">
+
+
+
+            <label class="col-md-2 control-label">Image search</label>
+
+            <div class="col-md-2">
+                <input type="text" class="form-control" name="key_word"
+                       ng-model="new_search_agent.keywords" required/>
+                <br/>
+                <div class="form-group"
+                     ng-if="new_search_agent.keywords.length>2">
+                    <div>
+                        <input type="submit" value="Search !" class="btn btn-primary"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+
+            <h4>Found <span class="label label-default">{{imagesList.length}}</span> pictures</h4>
+
+        </div>
+
+
+    </form>
+</div>
+<br/>
+
+
+<div class="col-md-8">
+    <table class="table">
+        <tr>
+            <th>Title
+            </th>
+            <th>Picture
+            </th>
+
+
+        </tr>
+        <tr ng-repeat="image in imagesList">
+
+            <td>{{ image.title }}
+                <input type="button" value="Details" class="btn btn-danger" ng-click="showDetails(image)"/>
+                <table class="table" ng-show="image.showDetails">
+                    <tr>
+                        <th>Width (px)
+                        </th>
+                        <th>Height (px)
+                        </th>
+                        <th>Date shot
+                        </th>
+                        <th>Author
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{ image.max_dimensions.width }}
+                        </td>
+                        <td>
+                            {{ image.max_dimensions.height }}
+                        </td>
+                        <td>
+                            {{ image.date_camera_shot | date:"MM/dd/yyyy 'at' h:mma"}}
+                        </td>
+                        <td>
+                            {{ image.artist }}
+                        </td>
+
+                    </tr>
+                </table>
+            </td>
+
+
+            <td>
+                <img title="{{ image.caption }}" ng-src="{{ image.display_sizes[0].uri }}" style="max-width: 200px;"/>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+    <p class="alert alert-info" ng-if="imagesList.length == 0">
+        No Image found for this keyword.
+    </p></div>
+</div>
+
+<!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.3.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+
+<script src="app/angularapp.js"></script>
+<script src="app/controller/searchAgentsController.js"></script>
+
+
+</body>
+
+
+</html>
